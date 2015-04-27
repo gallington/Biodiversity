@@ -1,0 +1,17 @@
+{
+    "contents" : "#plot to examine\nplot(rq)\nplot(land, add=TRUE)\n\n\n\nregion1 <- rbind(c(0,0), c(50,0), c(50,50), c(20,20), c(0,0))\nregion2 <- rbind(c(50,0), c(80,0), c(100,50), c(60,40), c(80,20), c(50,0))\npolys <- SpatialPolygons(list(Polygons(list(Polygon(region1)), \"region1\"),\n                              Polygons(list(Polygon(region2)), \"region2\")))\n\nr <- raster(ncol=1000, nrow=1000)\nr[] <- runif(ncell(r),0,1)\nextent(r) <- matrix(c(0, 0, 1000, 1000), nrow=2)\n\nr_crop <- crop(r, extent(polys), snap=\"out\", progress='text')\nr_mask <- mask(r_crop, polys) \n\nplot(r_mask)\nplot(polys, add=TRUE)\n\nland<- readShapePoly('land.shp')\nlandmasked<- mask(r,land)\n\n\n\n\nrandoPts<- randomPoints(rq, 880, Dornpts)",
+    "created" : 1430163441158.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4019038297",
+    "id" : "EF9DD48E",
+    "lastKnownWriteTime" : 1430167043,
+    "path" : "~/GitHub/Biodiversity/codenotes.R",
+    "project_path" : "codenotes.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
