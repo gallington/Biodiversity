@@ -2,20 +2,23 @@
 #   1. mask out land area from the analysis
 
 
-
-#This section for optional additional work with R
+#packages
 library(rgdal)
 library(dismo)
-library(rJava)
+#library(rJava)
 library(maptools)
 
+#work working directory:
 setwd("~/GitHub/Biodiversity")
+#home working directory:
+setwd("~/Biodiversity/Biodiversity")
+
 #load land shapefile
 land<- readShapePoly('land.shp')
 #Read point files
 Dornpts<-readShapePoints("Dornelas_terrt.shp")
 
-# read arcgis rasters directly
+# load rasters 
 rnorm <- raster("marineAllNorm.tif") #normalized for each taxon then averaged for "mean diversity"
 r<- raster("marineBiodivAll.tif") #all taxa
 
@@ -64,15 +67,15 @@ points(randoPts, col='red')
 
 
 #extract dependent and predictor values from rasters for training and testing
-dorntrain <- cbind(ptstrain,extract(r, ptstrain))
-colnames(patrain)[3] <- "oakb"
-patrain <- cbind(patrain, extract(s, ptstrain))
-patrain <- data.frame(patrain[complete.cases(patrain),])
+dornextr <- cbind(Dornpts,extract(r, Dornpts))
+#asign column name to div data
+colnames(dornextr)[3] <- "sp.div"
+#convert to dataframe
+dornextr <- data.frame(dornextr)
 
-patest <- cbind(ptstest,extract(r, ptstest))
-colnames(patest)[3] <- "oakb"
-patest <- cbind(patest, extract(s, ptstest))
-patest <- data.frame(patest[complete.cases(patest),])
+randoextr <- cbind(randoPts,extract(r, randoPts))
+colnames(randoextr)[3] <- "sp.div"
+randoextr<- data.frame(randoextr)
 
 #GLM
 glm <- glm(oakb~dem+sandp+coarse+slope+topowet, family=binomial,data=patrain)
