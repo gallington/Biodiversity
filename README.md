@@ -1,2 +1,2 @@
 # Biodiversity
-representativeness analyses
+spatial representativeness analyses
