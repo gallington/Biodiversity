@@ -1,6 +1,6 @@
-# Biodiversity Change Re-analyses
+###Readme
 
-Re-analyses of data from Vellend et al. 2014 and Dornelas et al. 2014 to assess the claim that globally there is no change in species richness at local spatial scales.
+Analysis of how duration influences the log ration effect size of diversity change. 
 
 Dornelas, M., N. J. Gotelli, B. McGill, H. Shimadzu, F. Moyes, C. Sievers, and A. E. Magurran. 2014. Assemblage time series reveal biodiversity change but not systematic loss. Science 344: 296-299.
 
